@@ -26,13 +26,11 @@ public class ArriveOnTimeEventLogListContainer implements DomainListContainer {
     @Getter
     private List<ArriveOnTimeEventLog> arriveOnTimeEventLogs;
     private LocalDateTime lastUpdateAt;
-    private final VisitEventLogList visitEventLogList;
-    private final AppointmentList appointmentList;
+    private final TestDataFilter testDataFilter;
 
     @PostConstruct
     private void init() {
-        arriveOnTimeEventLogs = arriveOnTimeEventLogRepository.findAll();
-        lastUpdateAt = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+        updateDataList();
     }
 
     @Override
@@ -42,7 +40,10 @@ public class ArriveOnTimeEventLogListContainer implements DomainListContainer {
 
     @Override
     public void updateDataList() {
-        arriveOnTimeEventLogs = arriveOnTimeEventLogRepository.findAll();
+        arriveOnTimeEventLogs = arriveOnTimeEventLogRepository.findAll().stream()
+                .filter(log -> testDataFilter.isNotTestData(log.getAppointment().getAppointmentName()))
+                .toList();
+
         lastUpdateAt = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
     }
 }

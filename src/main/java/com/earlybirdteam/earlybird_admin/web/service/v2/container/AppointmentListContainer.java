@@ -26,20 +26,24 @@ public class AppointmentListContainer implements DomainListContainer {
     private final AppointmentRepository appointmentRepository;
     private LocalDateTime lastUpdateAt;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    private final VisitEventLogList visitEventLogList;
+    private final TestDataFilter testDataFilter;
 
     @PostConstruct
     private void init() {
-        appointments = appointmentRepository.findAll();
-        lastUpdateAt = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+        updateDataList();
     }
 
+    @Override
     public String getLastUpdateAt() {
         return lastUpdateAt.format(dateTimeFormatter);
     }
 
+    @Override
     public void updateDataList() {
-        appointments = appointmentRepository.findAll();
+        appointments = appointmentRepository.findAll().stream()
+                .filter(a -> testDataFilter.isNotTestData(a.getAppointmentName()))
+                .toList();
+
         lastUpdateAt = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
     }
 }

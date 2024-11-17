@@ -26,8 +26,7 @@ public class FeedbackScoreListContainer implements DomainListContainer {
 
     @PostConstruct
     private void init() {
-        feedbackScores = feedbackScoreRepository.findAll();
-        lastUpdateAt = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+        updateDataList();
     }
 
     @Override

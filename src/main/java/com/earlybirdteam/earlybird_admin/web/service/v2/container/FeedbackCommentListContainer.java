@@ -27,8 +27,7 @@ public class FeedbackCommentListContainer implements DomainListContainer {
 
     @PostConstruct
     private void init() {
-        feedbackComments = feedbackCommentRepository.findAll();
-        lastUpdateAt = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+        updateDataList();
     }
 
     public String getLastUpdateAt() {
@@ -39,5 +38,4 @@ public class FeedbackCommentListContainer implements DomainListContainer {
         feedbackComments = feedbackCommentRepository.findAll();
         lastUpdateAt = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
     }
-
 }

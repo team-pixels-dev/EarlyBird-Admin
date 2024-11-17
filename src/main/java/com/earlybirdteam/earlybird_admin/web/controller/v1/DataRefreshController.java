@@ -32,7 +32,7 @@ public class DataRefreshController {
         domainListContainers.add(arriveOnTimeEventLogList);
     }
 
-    @PostMapping("/refresh")
+//    @PostMapping("/refresh")
     public String refreshAll(HttpServletRequest request) {
         String referer = request.getHeader("Referer");
 

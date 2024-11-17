@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="css/bootstrap.min.css" rel="stylesheet">
+    <title>EarlyBird Admin</title>
+</head>
+<body>
+<h1>EarlyBird Admin</h1>
+<span th:text="|데이터 업데이트 시간: ${dataLastUpdateAt}|">데이터 업데이트 시간: xxxxx</span>
+<form style="display: inline" th:action="@{/refresh}" method="post">
+    <button>데이터 새로고침</button>
+</form>
+
+<h2>기간별 데이터 요약</h2>
+<button type="button" th:onclick="|location.href='@{/dashboard}'|">전체 기간</button>
+<br>
+<button type="button" th:onclick="|location.href='@{/dashboard/beta-test/season1}'|">1차 베타테스트 기간</button>
+<br>
+<button type="button" th:onclick="|location.href='@{/dashboard/beta-test/season2}'|">2차 베타테스트 기간</button>
+<br>
+
+<h2>데이터 상세 보기</h2>
+<button type="button" th:onclick="|location.href='@{/appointment}'|">일정 & 알림 데이터</button>
+<br>
+<button type="button" th:onclick="|location.href='@{/feedback/score}'|">NPS 데이터</button>
+<br>
+<button type="button" th:onclick="|location.href='@{/feedback/comment}'|">피드백 코멘트 데이터</button>
+<br>
+<button type="button" th:onclick="|location.href='@{/visit-event}'|">방문 로그 데이터</button>
+<br>
+<button type="button" th:onclick="|location.href='@{/arrive-on-time-event}'|">정시 도착 로그 데이터</button>
+
+</body>
+</html>

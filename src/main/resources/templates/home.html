@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <link th:href="@{/css/bootstrap.min.css}"
+        href="css/bootstrap.min.css" rel="stylesheet">
+  <title>EarlyBird Admin</title>
+</head>
+<body>
+<h1>EarlyBird Admin</h1>
+<span th:text="|데이터 업데이트 시간: ${dataLastUpdateAt}|">데이터 업데이트 시간: xxxxx</span>
+<form style="display: inline" th:action="@{/refresh}" method="post">
+<button>데이터 새로고침</button>
+</form>
+<h2>요약</h2>
+
+<h3>일정 관련</h3>
+<table class="table table-striped table-bordered">
+  <tr class="table-dark">
+    <th scope="col">항목</th>
+    <th scope="col">수치</th>
+  </tr>
+  <tr>
+  <tr>
+    <td>전체 사용자</td>
+    <td th:text="|${totalVisitUser}명|">n명</td>
+  </tr>
+    <td>일정을 생성한 기록이 있는 사용자</td>
+    <td th:text="${userNum} + 명">n명</td>
+  </tr>
+  <tr>
+    <td>전체 일정 생성 개수</td>
+    <td th:text="${totalAppointmentNum} + 개">n개</td>
+  </tr>
+  <tr>
+    <td>1인 평균 일정 생성 개수</td>
+    <td th:text="${appointmentPerUser}+ 개">n개</td>
+  </tr>
+  <tr>
+    <td>전체 일정 수정 횟수</td>
+    <td th:text="${modifyCount} + 회">n회</td>
+  </tr>
+  <tr>
+    <td>1인 평균 일정 수정 횟수</td>
+    <td th:text="${modifyPerUser} + 회">n회</td>
+  </tr>
+  <tr>
+    <td>전체 일정 삭제 횟수</td>
+    <td th:text="${deleteCount} + 회">n회</td>
+  </tr>
+  <tr>
+    <td>1인 평균 일정 삭제 횟수</td>
+    <td th:text="${deletePerUser} + 회">n회</td>
+  </tr>
+</table>
+
+<h3>피드백 관련</h3>
+<table class="table table-striped table-bordered">
+  <tr class="table-dark">
+    <th scope="col">항목</th>
+    <th scope="col">수치</th>
+  </tr>
+  <tr>
+    <td>텍스트 피드백 개수</td>
+    <td th:text="|${textFeedbackCount}개|">n개</td>
+  </tr>
+  <tr>
+    <td>NPS 피드백 개수</td>
+    <td th:text="|${scoreFeedbackCount}개|">n개</td>
+  </tr>
+  <tr>
+    <td>평균 NPS 점수</td>
+    <td th:text="|${averageScore}점|">n점</td>
+  </tr>
+  <tr>
+    <td>NPS 9점 이상 개수</td>
+    <td th:text="|${nineToTen}개|">n개</td>
+  </tr>
+  <tr>
+    <td>NPS 9점 이상 개수 (유저 중복 제거)</td>
+    <td th:text="|${nineToTenDistinct}개|">n개</td>
+  </tr>
+  <tr>
+    <td>NPS 6점 이하 개수</td>
+    <td th:text="|${zeroToSix}개|">n개</td>
+  </tr>
+  <tr>
+    <td>NPS 6점 이하 개수 (유저 중복 제거)</td>
+    <td th:text="|${zeroToSixDistinct}개|">n개</td>
+  </tr>
+</table>
+
+<h3>방문자수 관련</h3>
+<table class="table table-striped table-bordered">
+  <tr class="table-dark">
+    <th scope="col">항목</th>
+    <th scope="col">수치</th>
+  </tr>
+  <tr>
+    <td>전체 방문자수</td>
+    <td th:text="|${totalVisitUser}명|">n명</td>
+  </tr>
+  <tr>
+    <td>1일차 방문자수</td>
+    <td th:text="|${day1UserCount}명|">n명</td>
+  </tr>
+  <tr>
+    <td>2일차 방문자수</td>
+    <td th:text="|${day2UserCount}명|">n명</td>
+  </tr>
+</table>
+
+<h3>리텐션 관련</h3>
+<table class="table table-striped table-bordered">
+  <tr class="table-dark">
+    <th scope="col">항목</th>
+    <th scope="col">수치</th>
+  </tr>
+  <tr>
+    <td>Day 0 리텐션 (2024-11-01)</td>
+    <td>100%</td>
+  </tr>
+  <tr>
+    <td>Day 1 리텐션 (2024-11-02)</td>
+    <td th:text="|${day1Retention}%|">n%</td>
+  </tr>
+  <tr>
+    <td>Day 2 리텐션 (2024-11-03)</td>
+    <td th:text="|${day2Retention}%|">n%</td>
+  </tr>
+  <tr>
+    <td>Day 3 리텐션 (2024-11-04)</td>
+    <td th:text="|${day3Retention}%|">n%</td>
+  </tr>
+  <tr>
+    <td>Day 4 리텐션 (2024-11-05)</td>
+    <td th:text="|${day4Retention}%|">n%</td>
+  </tr>
+  <tr>
+    <td>Day 5 리텐션 (2024-11-06)</td>
+    <td th:text="|${day5Retention}%|">n%</td>
+  </tr>
+</table>
+
+<h3>자체 정의 수치 관련</h3>
+<table class="table table-striped table-bordered">
+  <tr class="table-dark">
+    <th scope="col">항목</th>
+    <th scope="col">수치</th>
+  </tr>
+  <tr>
+    <td>(정시 도착 경험 후 일정 재생성 사용자 수) / (전체 사용자 수)</td>
+    <td th:text="|${arriveOnTimeAndRecreateAppointmentPercent}%|">n%</td>
+  </tr>
+</table>
+
+<h2>데이터 상세 보기</h2>
+<button type="button" th:onclick="|location.href='@{/appointment}'|">일정 & 알림 데이터</button>
+<br>
+<button type="button" th:onclick="|location.href='@{/feedback/score}'|">NPS 데이터</button>
+<br>
+<button type="button" th:onclick="|location.href='@{/feedback/comment}'|">피드백 코멘트 데이터</button>
+<br>
+<button type="button" th:onclick="|location.href='@{/visit-event}'|">방문 로그 데이터</button>
+<br>
+<button type="button" th:onclick="|location.href='@{/arrive-on-time-event}'|">정시 도착 로그 데이터</button>
+
+</body>
+</html>

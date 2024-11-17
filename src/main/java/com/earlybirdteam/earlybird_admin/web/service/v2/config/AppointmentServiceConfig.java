@@ -5,6 +5,7 @@ import com.earlybirdteam.earlybird_admin.web.service.v2.container.AppointmentLis
 import com.earlybirdteam.earlybird_admin.web.service.v2.season.all.AllTimeDate;
 import com.earlybirdteam.earlybird_admin.web.service.v2.season.beta.season1.BetaTestSeason1Date;
 import com.earlybirdteam.earlybird_admin.web.service.v2.season.beta.season2.BetaTestSeason2Date;
+import com.earlybirdteam.earlybird_admin.web.service.v2.season.beta.season3.BetaTestSeason3Date;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,5 +29,11 @@ public class AppointmentServiceConfig {
     @Bean
     public AppointmentService appointmentServiceSeason2(AppointmentListContainer appointmentListContainer, BetaTestSeason2Date betaTestSeason2Date) {
         return new AppointmentService(appointmentListContainer, betaTestSeason2Date);
+    }
+
+    @Qualifier("appointmentServiceBetaTestSeason3")
+    @Bean
+    public AppointmentService appointmentServiceSeason3(AppointmentListContainer appointmentListContainer, BetaTestSeason3Date betaTestSeason3Date) {
+        return new AppointmentService(appointmentListContainer, betaTestSeason3Date);
     }
 }

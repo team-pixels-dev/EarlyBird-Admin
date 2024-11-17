@@ -7,6 +7,7 @@ import com.earlybirdteam.earlybird_admin.web.service.v2.container.ArriveOnTimeEv
 import com.earlybirdteam.earlybird_admin.web.service.v2.season.all.AllTimeDate;
 import com.earlybirdteam.earlybird_admin.web.service.v2.season.beta.season1.BetaTestSeason1Date;
 import com.earlybirdteam.earlybird_admin.web.service.v2.season.beta.season2.BetaTestSeason2Date;
+import com.earlybirdteam.earlybird_admin.web.service.v2.season.beta.season3.BetaTestSeason3Date;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,5 +46,16 @@ public class ArriveOnTimeEventLogServiceConfig {
             BetaTestSeason2Date betaTestSeason2Date
     ) {
         return new ArriveOnTimeEventLogService(arriveLogContainer, userCountService, appointmentContainer, betaTestSeason2Date);
+    }
+
+    @Qualifier("arriveOnTimeEventLogServiceBetaTestSeason3")
+    @Bean
+    public ArriveOnTimeEventLogService arriveOnTimeEventLogServiceBetaTestSeason3(
+            ArriveOnTimeEventLogListContainer arriveLogContainer,
+            @Qualifier("userCountServiceBetaTestSeason3") UserCountService userCountService,
+            AppointmentListContainer appointmentContainer,
+            BetaTestSeason3Date seasonDate
+    ) {
+        return new ArriveOnTimeEventLogService(arriveLogContainer, userCountService, appointmentContainer, seasonDate);
     }
 }
